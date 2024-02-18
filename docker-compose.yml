@@ -1,0 +1,81 @@
+version: "3"
+services:
+  app:
+    build: 
+      context: ./
+      dockerfile: ./infra/app/Dockerfile
+    ports:
+      - "${APP_PORT:-54480}:80"
+    working_dir: /app
+    volumes:
+      - ./app/:/app
+      - sqlite:/app/database/sqlite/
+    privileged: true
+    tty: true
+    depends_on:
+      db:
+        condition: service_healthy
+  composer:
+    build:
+      context: ./
+      dockerfile: ./infra/composer/Dockerfile
+    volumes:
+      - ./app/:/app/
+    working_dir: /app
+  db:
+    image: mysql:8
+    volumes:
+        - db-data:/var/lib/mysql
+        - ./infra/db/my.cnf:/etc/mysql/conf.d/my.cnf
+        - ./infra/db/init.sql:/tmp/init.sql
+    ports:
+      - "${DB_PORT:-54406}:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=T9jm?tGN
+        - MYSQL_DATABASE=template
+        - MYSQL_USER=template_user
+        - MYSQL_PASSWORD=p2Z76!3H
+        - TZ=Asia/Tokyo
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-p${MYSQL_ROOT_PASSWORD:-password}"]
+      retries: 3
+      interval: 5s
+      timeout: 1s
+  db-testing:
+    image: mysql:8
+    volumes:
+      - db-testing-data:/var/lib/mysql
+      - ./infra/db-testing/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./infra/db-testing/init.sql:/tmp/init.sql
+    ports:
+      - "${DB_PORT:-54416}:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=T9jm?tGN
+      - MYSQL_DATABASE=template
+      - MYSQL_USER=template_user
+      - MYSQL_PASSWORD=p2Z76!3H
+      - TZ=Asia/Tokyo
+  frontend:
+    build: 
+      context: ./
+      dockerfile: ./infra/frontend/Dockerfile
+    tty: true
+    working_dir: /frontend
+    volumes:
+      - ./frontend/:/frontend
+      - ./app/public/:/frontend/public
+      - ./app/resources/views/:/frontend/src/views
+      - /frontend/node_modules
+    ports:
+      - "${FRONT_PORT:-54473}:54473"
+volumes:
+  db-data: 
+    driver: local
+  db-testing-data:
+    driver: local
+  vendor:
+    driver: local
+  node_modules:
+    driver: local
+  sqlite:
+    driver: local

@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'themes';
+
+@layer base {
+  body {
+    @apply break-words bg-background text-on-background;
+
+    ::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--theme-scroll-track);
+      border-radius: 7px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--theme-scroll-thumb);
+      border-radius: 7px;
+    }
+  }
+
+  p {
+    @apply mb-2;
+  }
+
+  hr {
+    @apply mb-4;
+  }
+
+  a {
+    @apply text-on-link;
+  }
+
+  button {
+    @apply inline-block rounded border px-4 py-2 drop-shadow-md;
+    @apply border-on-surface bg-surface text-on-surface hover:bg-surface-variant hover:text-on-surface-variant;
+  }
+
+  select {
+    @apply rounded bg-background text-on-background;
+  }
+}
+
+@layer components {
+  // ----- ボタン -----
+  .button-primary {
+    @apply inline-block rounded border px-4 py-2 drop-shadow-md;
+    @apply border-primary bg-primary text-on-primary hover:bg-on-primary hover:text-primary;
+  }
+
+  .button-secondary {
+    @apply inline-block rounded px-4 py-2 drop-shadow-md;
+    @apply bg-secondary text-on-secondary hover:bg-on-secondary hover:text-secondary;
+  }
+
+  .button-alert {
+    @apply inline-block rounded px-4 py-2 drop-shadow-md;
+    @apply bg-alert text-on-alert hover:bg-on-alert hover:text-alert;
+  }
+
+  .button-error {
+    @apply inline-block rounded px-4 py-2 drop-shadow-md;
+    @apply bg-error text-on-error hover:bg-on-error hover:text-error;
+  }
+
+  .button-surface {
+    @apply inline-block rounded border px-4 py-2 drop-shadow-md;
+    @apply border-on-surface bg-surface text-on-surface hover:bg-surface-variant hover:text-on-surface-variant;
+  }
+
+  .button-variant {
+    @apply inline-block rounded border px-4 py-2 drop-shadow-md;
+    @apply bg-surface-variant text-on-surface-variant hover:bg-on-surface-variant hover:text-surface-variant;
+  }
+
+  .button-variant-reverse {
+    @apply inline-block rounded border px-4 py-2 drop-shadow-md;
+    @apply bg-on-surface-variant text-surface-variant hover:bg-surface-variant hover:text-on-surface-variant;
+  }
+
+  .button-disabled {
+    @apply inline-block rounded bg-gray-700 px-4 py-2 drop-shadow-md;
+  }
+}
+
+@import 'markdown';
+
+:root {
+  @apply bg-background text-on-background;
+}
+
+#app {
+  @apply bg-background pb-0 text-on-background;
+}
+
+#register {
+  @apply mx-auto max-w-[600px] px-3;
+
+  .title {
+    @apply mb-5 rounded-md bg-primary px-3 py-10 text-on-primary;
+  }
+
+  .field {
+    @apply w-full;
+
+    .label {
+      @apply mb-4 block border-b pb-2 md:text-lg;
+    }
+
+    .control {
+      @apply relative mb-10 w-full items-center;
+
+      .icons {
+        @apply pointer-events-none absolute z-10 flex h-full w-full items-center justify-between px-3 text-lg;
+      }
+
+      .input,
+      .input-with-icon {
+        @apply w-full rounded-md border border-gray-400 px-3 py-2 drop-shadow-md;
+        @apply focus:outline-2 focus:outline-primary;
+      }
+
+      .input-with-icon {
+        @apply px-10;
+      }
+    }
+  }
+}
