@@ -33,22 +33,22 @@ logs-watch:
 	docker compose logs -f --tail 100
 
 exec-app: 
-	docker compose exec --user www-data app /bin/bash
+	docker compose exec --user debian app /bin/bash
 migrate:
-	docker compose exec --user www-data app php artisan migrate
+	docker compose exec --user debian app php artisan migrate
 migrate-rollback:
-	docker compose exec --user www-data app php artisan migrate:rollback
+	docker compose exec --user debian app php artisan migrate:rollback
 migrate-testing:
-	docker compose exec --user www-data app php artisan migrate --env=testing
+	docker compose exec --user debian app php artisan migrate --env=testing
 seeding:
-	docker compose exec --user www-data app php artisan db:seed
+	docker compose exec --user debian app php artisan db:seed
 seeding-testing:
-	docker compose exec --user www-data app php artisan db:seed --env=testing
+	docker compose exec --user debian app php artisan db:seed --env=testing
 ide-helper-generate:
 	docker compose exec --user debian app sudo php artisan ide-helper:generate
 	docker compose exec --user debian app sudo php artisan ide-helper:model --write-mixin
 er-diagram-generate:
-	docker compose exec --user www-data app php artisan generate:erd er_diagram.png
+	docker compose exec --user debian app php artisan generate:erd er_diagram.png
 create-log-file:
 	docker compose exec --user debian app sudo chown www-data:www-data /app/storage/ -R
 	docker compose exec --user debian app sudo chmod 777 /app/storage/ -R
@@ -62,9 +62,9 @@ create-node-modules-dir:
 	-mkdir ./frontend/node_modules
 
 exec-composer:
-	docker compose run --user debian composer bash
+	docker compose run --rm --user debian composer bash
 composer-install:
-	docker compose run --user debian composer bash -c "composer install"
+	docker compose run --rm --user debian composer bash -c "composer install"
 
 exec-db:
 	docker compose exec db bash
