@@ -121,7 +121,7 @@ substitutions:
 #  _DB_SOCKET: '/cloudsql/mjtak-sandbox:asia-northeast1:{cloud_run_instance_name}'
 availableSecrets:
   secretManager:
-  - versionName: projects/29891577416/secrets/mjtak-sandbox-db-password/latest
+  - versionName: projects/29891577416/secrets/mjtak-sandbox-db-password/versions/latest
     env: 'DB_PASSWORD'
 timeout:
   1800s
