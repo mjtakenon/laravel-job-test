@@ -1,4 +1,4 @@
-FROM node:18.15.0-bullseye AS frontend_build_stage
+FROM node:20.10.0-bullseye-slim AS frontend_build_stage
 
 WORKDIR /app
 

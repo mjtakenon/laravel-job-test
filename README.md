@@ -19,8 +19,8 @@ cp app/.env.local app/.env
   - Mac：`/etc/hosts`
 
 ```
-127.0.0.1 local-template.net
-::1 local-template.net
+127.0.0.1 local-laravel-job-test.net
+::1 local-laravel-job-test.net
 ```
 
 #### コンテナのビルド, モジュールのインストールと起動
@@ -34,7 +34,7 @@ $ make setup
 
 - vite開発サーバーが立ち上がったら、以下URLにブラウザからアクセスすることで、ページが表示できます
   - http://localhost:54480
-  - `/etc/hosts` に記録している場合、http://local-template.net:54480 でのアクセスも可能
+  - `/etc/hosts` に記録している場合、http://local-laravel-job-test.net:54480 でのアクセスも可能
 
 ### 2回目以降の起動
 
