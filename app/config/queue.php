@@ -71,6 +71,13 @@ return [
             'after_commit' => false,
         ],
 
+        'pubsub' => [
+            'driver' => 'pubsub',
+            'queue' => env('PUBSUB_QUEUE', 'laravel-queue-1'),
+            'project_id' => env('PUBSUB_PROJECT_ID', 'insert-project-here'),
+            'retries' => 3,
+            'request_timeout' => 60,
+        ],
     ],
 
     /*
