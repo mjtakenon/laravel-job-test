@@ -32,6 +32,6 @@ class JobsController extends Controller
     {
         TestJob::dispatch();
 
-        return response()->json(['result' => 'ok']);
+        return response()->json();
     }
 }

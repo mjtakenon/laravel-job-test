@@ -19,8 +19,8 @@
           <tr v-for="jobResult of jobResultStore.jobResults">
             <td class="td"> {{ jobResult.id }} </td>
             <td class="td"> {{ jobResult.result }} </td>
-            <td class="td"> {{ jobResult.created_at }} </td>
-            <td class="td"> {{ jobResult.updated_at }} </td>
+            <td class="td"> {{ new Date(jobResult.created_at).toLocaleString() }} </td>
+            <td class="td"> {{ new Date(jobResult.updated_at).toLocaleString() }} </td>
           </tr>
         </tbody>
       </table>
@@ -44,7 +44,6 @@ onMounted(() => {
 
 const onClickUpdate = () => {
   jobResultStore.ajaxResult.status = RequestStatus.Updating
-  jobResultStore.jobResults = []
   jobResultStore.getJobResults()
 }
 </script>
@@ -68,7 +67,7 @@ const onClickUpdate = () => {
 }
 
 .th {
-  @apply px-2 py-2 text-start text-xs font-medium text-gray-500;
+  @apply px-2 py-2 text-start text-sm font-medium text-gray-500;
 }
 
 .td {

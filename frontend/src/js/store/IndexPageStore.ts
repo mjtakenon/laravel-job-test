@@ -4,18 +4,16 @@ import {ref} from 'vue'
 import {AjaxResult, RequestStatus} from "$entity/Network.js";
 import {JobResult} from "$entity/JobResult.js";
 
-export const useJobResultStore = defineStore('jobResult', () => {
-  const jobResults = ref<JobResult[]>([])
+export const useIndexStore = defineStore('index', () => {
   const ajaxResult = ref<AjaxResult>({ status: RequestStatus.None })
 
-  const getJobResults = async (): Promise<AjaxResult> => {
-    console.debug('GET', '/api/jobs')
+  const postJob = async(): Promise<AjaxResult> => {
+    console.debug('POST', '/api/jobs')
     await axios
-      .get('/api/jobs')
+      .post('/api/jobs')
       .then((res) => {
         console.debug(res)
         ajaxResult.value.status = RequestStatus.Success
-        jobResults.value = res.data.data
       })
       .catch((err) => {
         console.error(err)
@@ -24,5 +22,5 @@ export const useJobResultStore = defineStore('jobResult', () => {
       })
   }
 
-  return { jobResults, ajaxResult, getJobResults }
+  return { ajaxResult, postJob }
 })
