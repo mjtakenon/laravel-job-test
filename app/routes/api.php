@@ -26,3 +26,8 @@ $baseMiddleware = [
     \Illuminate\Http\Middleware\FrameGuard::class,
     'throttle:api',
 ];
+
+Route::prefix('jobs')->middleware($baseMiddleware)->group( function() {
+    Route::get('', [\App\Http\Controllers\Api\Jobs\JobsController::class, 'get']);
+    Route::post('', [\App\Http\Controllers\Api\Jobs\JobsController::class, 'post']);
+});

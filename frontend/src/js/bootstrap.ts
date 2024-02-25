@@ -26,6 +26,7 @@ export const app: App = createApp({
 })
 
 const pinia = createPinia()
+app.use(pinia)
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 
 /**

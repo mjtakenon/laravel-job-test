@@ -23,7 +23,6 @@ $baseMiddleware = [
     'throttle:web',
 ];
 
-Route::prefix('/')->middleware($baseMiddleware)->group( function() {
-    Route::get('', [\App\Http\Controllers\IndexController::class, 'get'])->name(RouteServiceProvider::ROUTE_HOME);
-    Route::post('', [\App\Http\Controllers\IndexController::class, 'post']);
+Route::prefix('')->middleware($baseMiddleware)->group( function() {
+    Route::get('', [\App\Http\Controllers\Web\IndexController::class, 'get'])->name(RouteServiceProvider::ROUTE_HOME);
 });

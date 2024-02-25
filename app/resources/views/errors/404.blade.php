@@ -1,5 +1,5 @@
 @extends('components.app')
-@section('title', 'やまにてぃ（仮）')
+@section('title', '404')
 @section('contents')
     <div id="app">
         @include('components.header')

@@ -11,4 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 class JobResult extends Model
 {
     use HasFactory;
+
+    public function toViewArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'result' => $this->result,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
+    }
 }

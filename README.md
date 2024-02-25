@@ -12,15 +12,34 @@
 cp app/.env.local app/.env
 ```
 
-#### hostsの設定
+[//]: # (#### hostsの設定)
 
-- hostsファイルにローカル環境のドメインを追記してください（管理者権限が必要です）
-  - Windows：`C:\Windows\System32\drivers\etc\hosts`
-  - Mac：`/etc/hosts`
+[//]: # ()
+[//]: # (- hostsファイルにローカル環境のドメインを追記してください（管理者権限が必要です）)
 
-```
-127.0.0.1 local-laravel-job-test.net
-::1 local-laravel-job-test.net
+[//]: # (  - Windows：`C:\Windows\System32\drivers\etc\hosts`)
+
+[//]: # (  - Mac：`/etc/hosts`)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (127.0.0.1 localhost)
+
+[//]: # (::1 localhost)
+
+[//]: # (```)
+
+#### gcloud資格情報ファイルの設置
+
+gcloud CLIをホストOSにインストールしてください。
+その後、資格情報ファイルを生成し、`app/resources/keys`以下に配置して下さい。
+
+```shell
+gcloud auth application-default login
+# 表示されるURLにアクセスし、GCPのアカウントでログインしてください
+
+cp ~/.config/gcloud/application_default_credentials.json ./app/resources/keys
 ```
 
 #### コンテナのビルド, モジュールのインストールと起動
@@ -34,7 +53,7 @@ $ make setup
 
 - vite開発サーバーが立ち上がったら、以下URLにブラウザからアクセスすることで、ページが表示できます
   - http://localhost:54480
-  - `/etc/hosts` に記録している場合、http://local-laravel-job-test.net:54480 でのアクセスも可能
+  - `/etc/hosts` に記録している場合、http://localhost:54480 でのアクセスも可能
 
 ### 2回目以降の起動
 
