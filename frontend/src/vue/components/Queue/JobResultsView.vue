@@ -55,11 +55,11 @@ const onClickUpdate = () => {
 }
 
 .update-button {
-  @apply cursor-pointer;
-}
+  @apply select-none cursor-pointer;
 
-.update-button:hover {
-  @apply select-none text-gray-500;
+  &:hover {
+    @apply text-gray-500;
+  }
 }
 
 .table {
